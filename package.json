@@ -1,0 +1,40 @@
+{
+  "name": "create-react-app",
+  "version": "5.0.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@material-ui/icons": "^4.11.3",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/material": "^5.6.3",
+    "eslint-plugin-import": "^2.26.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-full-screen": "^1.1.0",
+    "react-scripts": "latest",
+    "react-unity-webgl": "^8.8.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.14.0",
+    "eslint-plugin-material-ui": "^1.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
