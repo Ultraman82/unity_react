@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import Unity, { UnityContext } from "react-unity-webgl";
+import React, { useState, useEffect, useContext, useMemo } from "react";
+
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -12,53 +12,54 @@ import LinkContainer from './LinkContainer'
 import Board from './Board'
 import VideoOpen from './VideoOpen'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Username from "./Username";
+import Unity, { UnityContext } from "react-unity-webgl";
+import { UserInfoContextStore } from './UserInfoContext';
+
+const unityContext = new UnityContext({
+  loaderUrl: "Build/public.loader.js",
+  dataUrl: "Build/public.data",
+  frameworkUrl: "Build/public.framework.js",
+  codeUrl: "Build/public.wasm",
+  webglContextAttributes: {
+    preserveDrawingBuffer: true,
+  },
+})
 
 export default function App() {
-  const unityContext = new UnityContext({
-    loaderUrl: "Build/public.loader.js",
-    dataUrl: "Build/public.data",
-    frameworkUrl: "Build/public.framework.js",
-    codeUrl: "Build/public.wasm",
-  })
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [linkType, setLinkType] = useState("default");
   const handle = useFullScreenHandle();
+  const { localData, setLocalData, eraseLocal } = useContext(UserInfoContextStore)
+
 
   return (
     // <Container>
     // <Box sx={{ my: 4 }}>
     <Box>
-      <OpeningVideoContainer />
-      <Board unityContext={unityContext} />
+      {/* <OpeningVideoContainer /> */}
+      {/* <Board unityContext={unityContext} />
       <LinkContainer unityContext={unityContext} />
-      <VideoOpen unityContext={unityContext} />
-
-
-      <Unity style={{
+      <VideoOpen unityContext={unityContext} /> */}
+      {/* <Unity style={{
         width: '100%',
         height: '100%',
         justifySelf: 'center',
-        alignSelf: 'center'
-      }} unityContext={unityContext} />
+        alignSelf: 'center',
+      }} unityContext={unityContext} /> */}
+      {
+        !localData &&
+        <Username unityContext={unityContext} />
+      }
 
-      <Button variant="outlined" startIcon={<SettingsOverscanIcon />} onClick={handle.enter}>
-        Full Screen
+      <Button variant="outlined" onClick={eraseLocal}>
+        Reset localStorage
       </Button>
-
+      {/* <Button variant="outlined" startIcon={<SettingsOverscanIcon />} onClick={handle.enter}>
+        Full Screen
+      </Button> */}
       {/* <Copyright /> */}
-    </Box>
+    </Box >
+
     // </Container>
   );
 }
+
