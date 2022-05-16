@@ -1,0 +1,94 @@
+#chat-window-messages {
+    height: 25vw;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.chat-container {
+    position: absolute;
+    top: 5vw;
+    right: 10px;
+    width: 20rem !important;
+}
+
+.side-drawer {
+    position: absolute !important;
+    top: 5vw;
+    justify-self: center;
+    left: 0.5em;
+    align-self: center;
+    font-size: 2.7em !important;
+    color: #FF8C00 !important;
+}
+
+.chat-window {
+    background: transparent !important;
+}
+
+.MuiListItemText-primary {
+    /* font-size: 0.5rem !important; */
+    /* opacity: 0.5 !important; */
+    /* background-color: black; */
+}
+
+.MuiListItem-root {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.full-button {
+    position: absolute !important;
+    top: 5vw;
+    justify-self: center;
+    left: 2.6em;
+    align-self: center;
+    font-size: 2.7em !important;
+    color: #FF8C00 !important;
+}
+
+.question-button {
+    position: absolute !important;
+    top: 5vw;
+    left: 4em;
+    justify-self: center;
+    align-self: center;
+    font-size: 2.7em !important;
+    color: #FF8C00 !important;
+}
+
+.mobile-aux-input {
+    position: absolute !important;
+    top: -55vh;
+    left: -30vw;
+    color: aliceblue !important;
+}
+
+.connect-button {
+    position: absolute !important;
+    top: 40vw;
+    right: 30vw;
+    background-color: #FF8C00 !important;
+}
+
+.view-button {
+    position: absolute !important;
+    justify-self: center;
+    align-self: center;
+    top: 40vw;
+    right: 6em;
+    color: #FF8C00 !important;
+}
+
+.chat-button {
+    position: absolute !important;
+    justify-self: center;
+    align-self: center;
+    top: 40vw;
+    right: 2em;
+    color: #FF8C00 !important;
+
+}
+
+.button-icon {
+    font-size: 2.7rem !important;
+}

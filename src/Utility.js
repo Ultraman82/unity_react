@@ -12,7 +12,6 @@ export default function Utility(props) {
   const { localData, setLocalData } = useContext(UserInfoContextStore)
 
   useEffect(function () {
-
   }, []);
 
   function handleOnClickTakeScreenshot() {
@@ -21,29 +20,9 @@ export default function Utility(props) {
       window.open(data, "_blank");
     }
   }
-  function getIPlist() {
-    axios.get(`http://localhost:5000/api/iplist`)
-      // axios.get(`http://localhost:5000/api/iplist`, {
-      //   headers: headers
-      // })
-      .then(res => {
-        const iplist = res.data;
-        return iplist;
-      })
-  }
-
-  let test_ = 'https://ipinfo.io/json'
-  const headers = {
-    "Content-Type": "application/json",
-  };
-
-  const getIp = async () => {
-    const res = await axios.get(test_)
-    console.log(res.data);
-  }
   return (
     <>
-      {!localData}
+      {/* {!localData} */}
       <Username unityContext={unityContext} />
       <h6>{ }</h6>
 
@@ -53,11 +32,6 @@ export default function Utility(props) {
     </>
   );
 }
-
-
-
-
-
 
 function Copyright() {
   return (

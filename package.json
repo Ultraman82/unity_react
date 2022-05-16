@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && rsync -avz -r -e 'ssh -p 20022' ~/front/build/ oem@203.250.81.122:/home/oem/backend_backup/build/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -16,7 +16,7 @@
     "@emotion/styled": "^11.8.1",
     "@material-ui/icons": "^4.11.3",
     "@mui/icons-material": "^5.6.2",
-    "@mui/material": "^5.6.3",
+    "@mui/material": "^5.6.4",
     "axios": "^0.24.0",
     "eslint-plugin-import": "^2.26.0",
     "macaddress": "^0.5.2",
@@ -24,11 +24,13 @@
     "react-dom": "latest",
     "react-full-screen": "^1.1.0",
     "react-hook-form": "^7.30.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "latest",
     "react-unity-webgl": "^8.8.0",
-    "use-react-screenshot": "^3.0.0"
+    "socket.io-client": "^4.5.0"
   },
   "devDependencies": {
+    "@testing-library/react": "^12.1.2",
     "eslint": "^8.14.0",
     "eslint-plugin-material-ui": "^1.0.1"
   },

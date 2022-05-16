@@ -15,7 +15,8 @@ export default function Username(props) {
   const [nickname, setNickName] = useState('');
   const [invalid, setInvalid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const { localData, setLocalData, getIp, ip, wordReg, postUserdata, postStatus } = useContext(UserInfoContextStore)
+  const { isVideoOver, isUsernameSet, setIsUsernameSet, openingVideo, setOpeningVideo, name, setName, unityLoaded, setLocalData, getIp, ip, wordReg, postUserdata, postStatus, usernameInput, setUsernameInput } = useContext(UserInfoContextStore)
+  const ENTER_KEY_CODE = 13;
 
   const symbol_check = /[!?@#$%^&*():;+-=~{}<>\_\[\]\|\\\"\'\,\.\/\`\₩]/g
   const onChange = (e) => {
@@ -34,12 +35,28 @@ export default function Username(props) {
   }
 
   useEffect(() => {
-    getIp()
-  }, [nickname]);
+    setUsernameInput(isVideoOver)
+
+  }, [isVideoOver]);
 
   useEffect(() => {
-    console.log('post success')
+    if (open) {
+      unityContext.send("WebManager", "SetInputWeb")
+      console.log("resume game")
+    } else {
+      unityContext.send("WebManager", "SetInputUnity")
+    }
+  }, [open]);
+
+
+
+  useEffect(() => {
+    console.log('post success ', postStatus)
   }, [postStatus]);
+
+  // useEffect(() => {
+  //   setUsernameInput(usernameInput)
+  // }, [usernameInput]);
 
   const saveLocalData = () => {
     let temp = ip
@@ -47,19 +64,28 @@ export default function Username(props) {
     temp.avatar = 0;
     localStorage.setItem('busanMayor', JSON.stringify(temp))
     setLocalData(temp)
-    console.log(postUserdata(temp))
   }
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setUsernameInput(true);
   };
+  const handleEnterKey = (event) => {
+    if (event.keyCode === ENTER_KEY_CODE) {
+      onSubmit()
+    }
+  }
 
   const onSubmit = () => {
     if (!invalid) {
       unityContext.send("WebManager", "SetInputUnity")
-      unityContext.send("Connect", "ConnectFromWeb", nickname)
-      saveLocalData()
-      setOpen(false);
+      unityContext.send("WebManager", "SetNickName", nickname)
+      unityContext.send("WebManager", "ResumeGame")
+      setName(nickname)
+      setUsernameInput(false);
+      setIsUsernameSet(true)
+      if (openingVideo) {
+        setOpeningVideo(false)
+      }
     }
   }
 
@@ -69,16 +95,13 @@ export default function Username(props) {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={usernameInput} onClose={handleClose}>
         <DialogTitle>아바타 생성</DialogTitle>
         <DialogContent>
           <DialogContentText>
             사용하실 아바타 이름을 입력해 주세요.<br></br> 특수기호나 부적절한 단어는 사용하실수 없습니다.
           </DialogContentText>
-          <TextField type="text" value={nickname} onChange={onChange} error={invalid} helperText={errorMessage} />
+          <TextField type="text" value={nickname} onChange={onChange} error={invalid} helperText={errorMessage} onKeyDown={handleEnterKey} />
         </DialogContent>
         <DialogActions>
           <Button onClick={onSubmit} disabled={invalid}>확인</Button>
