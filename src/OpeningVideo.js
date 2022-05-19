@@ -43,7 +43,7 @@ export default function OpeningVideoContainer() {
         setTimeout(() => {
             setIsVideoOver(true);
             setOpeningVideo(false)
-        }, 5000)
+        }, 47000)
     }, []);
 
 
@@ -54,6 +54,7 @@ export default function OpeningVideoContainer() {
     const handleClose = () => {
         console.log('opening close')
         setOpeningVideo(false);
+        setUsernameInput(true);
     };
 
     return (

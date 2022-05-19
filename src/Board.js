@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import { useTheme } from '@mui/material/styles';
+import { UserInfoContextStore } from './UserInfoContext';
 
 const customStyles = {
     iframe: {
@@ -13,20 +13,33 @@ const customStyles = {
         height: '80vh',
         zIndex: 255
     },
+    dialog: {
+        padding: '5px'
+    },
+    closeButton: {
+        height: '12px'
+    }
 };
+
+const boardMap = {
+    'a': "ask",
+    'b': "suggest",
+    'c': "cheer"
+}
 const default_url = "https://padlet.com/exelcior99/i5bslrl8m525t97t";
 
 export default function Board(props) {
     const unityContext = props.unityContext;
-
-    const theme = useTheme();
     const [open, setOpen] = useState(false);
     const [url, setUrl] = useState(default_url);
+    const { links } = useContext(UserInfoContextStore)
 
 
     useEffect(function () {
         unityContext.on("OpenBoard", function (boardType, name) {
             console.log("Board", boardType)
+            console.log(boardType)
+            setUrl(links[boardMap[boardType]]);
             setOpen(true)
         });
     }, []);
@@ -41,20 +54,17 @@ export default function Board(props) {
     };
 
     return (
-
         <Dialog
             fullWidth={true}
             maxWidth={"xl"}
-            // maxHeight={"960px"}
             open={open}
             onClose={handleClose}
-        // fullScreen={"true"}
         >
-            <DialogContent>
+            <DialogContent style={customStyles.dialog}>
                 <iframe style={customStyles.iframe} src={url} > </iframe>
             </DialogContent>
-            <DialogActions>
-                <Button onClick={handleClose}>Close</Button>
+            <DialogActions style={customStyles.closeButton}>
+                <Button onClick={handleClose}>닫기</Button>
             </DialogActions>
         </Dialog>
     );

@@ -13,6 +13,12 @@ const customStyles = {
         height: '80vh',
         zIndex: 255
     },
+    dialog: {
+        padding: '5px'
+    },
+    closeButton: {
+        height: '12px'
+    }
 };
 export default function LinkBoard(props) {
     const url = props.url
@@ -31,16 +37,14 @@ export default function LinkBoard(props) {
         <Dialog
             fullWidth={true}
             maxWidth={"xl"}
-            // maxHeight={"960px"}
             open={open}
             onClose={handleClose}
-        // fullScreen={"true"}
         >
-            <DialogContent>
+            <DialogContent style={customStyles.dialog}>
                 <iframe style={customStyles.iframe} src={url} > </iframe>
             </DialogContent>
-            <DialogActions>
-                <Button onClick={handleClose}>Close</Button>
+            <DialogActions style={customStyles.closeButton}>
+                <Button onClick={handleClose}>닫기</Button>
             </DialogActions>
         </Dialog>
     );

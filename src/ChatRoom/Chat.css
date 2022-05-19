@@ -74,7 +74,7 @@
     position: absolute !important;
     justify-self: center;
     align-self: center;
-    top: 40vw;
+    bottom: 7vh;
     right: 6em;
     color: #FF8C00 !important;
 }
@@ -83,7 +83,7 @@
     position: absolute !important;
     justify-self: center;
     align-self: center;
-    top: 40vw;
+    bottom: 7vh;
     right: 2em;
     color: #FF8C00 !important;
 

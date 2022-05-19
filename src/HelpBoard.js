@@ -5,6 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import { useTheme } from '@mui/material/styles';
 import { UserInfoContextStore } from './UserInfoContext'
+import helpPng from './info.png';
 const customStyles = {
     iframe: {
         justifySelf: 'center',
@@ -13,7 +14,7 @@ const customStyles = {
         height: '80vh'
     },
 };
-const default_url = "https://busanmayor.org/info.png";
+const default_url = "Build/info.png";
 
 export default function HelpBoard() {
     const { helpToggle, setHelpToggle } = useContext(UserInfoContextStore);
@@ -40,7 +41,7 @@ export default function HelpBoard() {
         >
             {/* <DialogTitle>응원하기</DialogTitle> */}
             <DialogContent>
-                <img style={customStyles.iframe} src={url} />
+                <img style={customStyles.iframe} src={helpPng} />
                 {/* <iframe style={customStyles.iframe} src={url} id="iframe-style" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen> </iframe> */}
 
             </DialogContent>

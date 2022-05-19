@@ -122,7 +122,7 @@ export default function ChatTest(props) {
             {
                 open && <Grid xs={4} sm={3} className="chat-container">
                     {/* <Paper elevation={5} className={classes.paper}> */}
-                    <Paper elevation={5} className="chat-window">
+                    <Paper spacing={1} elevation={5} className="chat-window">
                         <Box p={0} >
                             <Grid container spacing={1} alignItems="center">
                                 <Grid id="chat-window" xs={12} item>

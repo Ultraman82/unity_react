@@ -6,8 +6,20 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import axios from 'axios';
 import { UserInfoContextStore } from './UserInfoContext';
+
+const customStyles = {
+  iframe: {
+    justifySelf: 'center',
+    alignSelf: 'center',
+  },
+  dialog: {
+    padding: '5px'
+  },
+  closeButton: {
+    height: '12px'
+  }
+};
 
 export default function Username(props) {
   const unityContext = props.unityContext;
@@ -18,10 +30,12 @@ export default function Username(props) {
   const { isVideoOver, isUsernameSet, setIsUsernameSet, openingVideo, setOpeningVideo, name, setName, unityLoaded, setLocalData, getIp, ip, wordReg, postUserdata, postStatus, usernameInput, setUsernameInput } = useContext(UserInfoContextStore)
   const ENTER_KEY_CODE = 13;
 
-  const symbol_check = /[!?@#$%^&*():;+-=~{}<>\_\[\]\|\\\"\'\,\.\/\`\₩]/g
+  // const symbol_check = /[!?@#$%^&*():;+-=~{}<>\_\[\]\|\\\"\'\,\.\/\`\₩]/g
+  const symbol_check = /[\[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"\\\'\\]/
   const onChange = (e) => {
     let name = e.target.value
     setNickName(name)
+
     if (wordReg.test(name)) {
       setInvalid(true)
       setErrorMessage("부적절한 단어가 사용 되었습니다.")
@@ -35,8 +49,7 @@ export default function Username(props) {
   }
 
   useEffect(() => {
-    setUsernameInput(isVideoOver)
-
+    if (!isUsernameSet) setUsernameInput(isVideoOver)
   }, [isVideoOver]);
 
   useEffect(() => {
@@ -97,11 +110,12 @@ export default function Username(props) {
     <div>
       <Dialog open={usernameInput} onClose={handleClose}>
         <DialogTitle>아바타 생성</DialogTitle>
-        <DialogContent>
+        <DialogContent style={customStyles.iframe}>
           <DialogContentText>
             사용하실 아바타 이름을 입력해 주세요.<br></br> 특수기호나 부적절한 단어는 사용하실수 없습니다.
           </DialogContentText>
-          <TextField type="text" value={nickname} onChange={onChange} error={invalid} helperText={errorMessage} onKeyDown={handleEnterKey} />
+          <br></br>
+          <TextField fullWidth type="text" value={nickname} onChange={onChange} error={invalid} helperText={errorMessage} onKeyDown={handleEnterKey} />
         </DialogContent>
         <DialogActions>
           <Button onClick={onSubmit} disabled={invalid}>확인</Button>

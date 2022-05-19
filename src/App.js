@@ -1,14 +1,11 @@
-import React, { useState, useEffect, useContext, useMemo } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Box from '@mui/material/Box';
-
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import OpeningVideoContainer from './OpeningVideo'
-
 import IconButton from '@mui/material/IconButton';
-
-import LinkContainer from './LinkContainer'
 import Board from './Board'
-import VideoOpen from './VideoOpen'
+// import LinkContainer from './LinkContainer'
+// import VideoOpen from './VideoOpen'
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import Username from "./Username";
@@ -16,7 +13,6 @@ import Unity, { UnityContext } from "react-unity-webgl";
 import { UserInfoContextStore } from './UserInfoContext';
 import ChatTest from "./ChatRoom/ChatTest";
 import SideDrawer from './SideDrawer'
-import { ViewSidebar } from "@mui/icons-material";
 
 const unityContext = new UnityContext({
   loaderUrl: "Build/public.loader.js",
@@ -28,9 +24,7 @@ const unityContext = new UnityContext({
 export default function App() {
   const handle = useFullScreenHandle();
   const [isFull, setIsFull] = useState(false);
-
-  const { isVideoOver, links, InGame, helpToggle, setHelpToggle, setInGame, setCameraOver, connect, localData, setLocalData, eraseLocal, unityLoaded, setUnityLoaded, progression, setProgression, isMobile } = useContext(UserInfoContextStore)
-
+  const { name, isUsernameSet, isVideoOver, links, InGame, helpToggle, setHelpToggle, setInGame, setCameraOver, connect, localData, setLocalData, eraseLocal, unityLoaded, setUnityLoaded, progression, setProgression, isMobile } = useContext(UserInfoContextStore)
 
   useEffect(function () {
     unityContext.on("progress", function (progression) {
@@ -53,6 +47,11 @@ export default function App() {
   useEffect(function () {
     if (unityLoaded) {
       unityContext.send("WebManager", "SetVideoUrl", links.boardVideo);
+      if (isUsernameSet) {
+        unityContext.send("WebManager", "ResumeGame")
+        unityContext.send("WebManager", "SetNickName", name)
+
+      }
     }
   }, [unityLoaded]);
 
@@ -85,8 +84,8 @@ export default function App() {
       {links &&
         <>
           <OpeningVideoContainer />
-          <LinkContainer unityContext={unityContext} />
-          <VideoOpen unityContext={unityContext} />
+          {/* <LinkContainer unityContext={unityContext} />
+          <VideoOpen unityContext={unityContext} /> */}
           {!unityLoaded && <p>Loading {progression}%</p>}
           <FullScreen handle={handle}>
             {unityLoaded &&
@@ -111,9 +110,7 @@ export default function App() {
             }} unityContext={unityContext} tabIndex={1} className={"game-canvas"} />
             <ChatTest unityContext={unityContext}></ChatTest>
             <Board unityContext={unityContext} />
-
           </FullScreen>
-
         </>
       }
     </Box >

@@ -8,15 +8,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import { UserInfoContextStore } from "./UserInfoContext"
-import { makeStyles } from "@material-ui/core/styles";
 import PageviewIcon from '@mui/icons-material/Pageview';
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import AddReactionIcon from '@mui/icons-material/AddReaction';
@@ -30,8 +27,11 @@ const customStyles = {
         height: '80vh',
         zIndex: 255
     },
-    drawer: {
-        background: 'transparent'
+    dialog: {
+        padding: '5px'
+    },
+    closeButton: {
+        height: '12px'
     }
 };
 
@@ -119,11 +119,11 @@ export default function SideDrawer() {
                 open={open}
                 onClose={handleClose}
             >
-                <DialogContent>
+                <DialogContent style={customStyles.dialog}>
                     <iframe style={customStyles.iframe} src={url} > </iframe>
                 </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Close</Button>
+                <DialogActions style={customStyles.closeButton}>
+                    <Button onClick={handleClose}>닫기</Button>
                 </DialogActions>
             </Dialog>
         </div>
