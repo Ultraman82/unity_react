@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rsync -avz -r -e 'ssh -p 20022' ~/front/build/ oem@203.250.81.122:/home/oem/backend_backup/build/",
+    "build": "react-scripts build && rsync -avz -r -e ~/front/build/ bitnami@13.209.55.74:/home/bitnami/backend_backup/build/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -20,6 +20,7 @@
     "axios": "^0.24.0",
     "eslint-plugin-import": "^2.26.0",
     "macaddress": "^0.5.2",
+    "peerjs": "^1.4.4",
     "react": "latest",
     "react-dom": "latest",
     "react-full-screen": "^1.1.0",

@@ -11,15 +11,15 @@
     width: 20rem !important;
 }
 
-.side-drawer {
+/* .side-drawer {
     position: absolute !important;
     top: 5vw;
     justify-self: center;
     left: 0.5em;
     align-self: center;
-    font-size: 2.7em !important;
-    color: #FF8C00 !important;
-}
+    font-size: 2.5em !important;
+    color: #FFFFFF !important;
+} */
 
 .chat-window {
     background: transparent !important;
@@ -43,7 +43,6 @@
     left: 2.6em;
     align-self: center;
     font-size: 2.7em !important;
-    color: #FF8C00 !important;
 }
 
 .question-button {
@@ -91,4 +90,27 @@
 
 .button-icon {
     font-size: 2.7rem !important;
+}
+
+.icon-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 2rem;
+    top: 2rem;
+    justify-content: center;
+    width: 3rem;
+    font-size: 3.25rem;
+}
+
+.imageRoot {
+    font-size: 3.25rem;
+}
+
+.imageIcon {
+    position: relative;
+    height: 100%;
+    right: 14px;
+    min-width: 100%;
+    min-height: 100%
 }

@@ -1,0 +1,21 @@
+.mc-container {
+    justify-self: center;
+    align-self: center;
+    width: 30vw;
+    background: transparent !important;
+    background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.mc-parent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mobile-aux-input {
+    position: absolute !important;
+    top: -55vh;
+    left: -30vw;
+    color: aliceblue !important;
+}

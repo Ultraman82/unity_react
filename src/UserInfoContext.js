@@ -31,6 +31,11 @@ const UserInfoContext = (props) => {
     const [links, setLinks] = useState();
     const [boards, setBoards] = useState();
     const [isVideoOver, setIsVideoOver] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isChatOpen, setIsChatOpen] = useState(false);
+    const [mcMessage, setMcMessage] = useState("");
+    const [myMessage, setMyMessage] = useState("");
+
 
     // const backend_uri = "https://203.250.81.122:5000"
     const backend_uri = process.env.REACT_APP_DB_HOST
@@ -114,14 +119,28 @@ const UserInfoContext = (props) => {
             })
     }
 
+    function toggleMenubar() {
+        setIsMenuOpen(!isMenuOpen)
+    }
+    function toggleChat() {
+        console.log("toggleChat")
+        setIsChatOpen(!isChatOpen)
+    }
+    function toggleHelp() {
+        console.log("toggleHelp")
+        setHelpToggle(!helpToggle)
+    }
+
     const UserInfo = {
+        mcMessage, setMcMessage, myMessage, setMyMessage,
         name, setName,
+        isChatOpen, setIsChatOpen, toggleChat,
         isVideoOver, setIsVideoOver,
         ip, setIp,
         localData, setLocalData,
         avatar, setAvatar,
         getIp, eraseLocal,
-        wordReg,
+        wordReg, isMenuOpen, toggleMenubar,
         postUserdata,
         setUsernameInput,
         usernameInput,
@@ -130,7 +149,7 @@ const UserInfoContext = (props) => {
         isMobile, setIsMobile,
         openingVideo, setOpeningVideo,
         progression, setProgression, boards,
-        connect, getBlackList, helpToggle, setHelpToggle,
+        connect, getBlackList, helpToggle, setHelpToggle, toggleHelp,
         cameraOver, setCameraOver, wordBlackList, setWordBlackList,
         isUsernameSet, setIsUsernameSet, InGame, setInGame, links, userBlackList
     }

@@ -46,22 +46,22 @@ function renderSwitch(param) {
         case '부산시장, 박형준':
             return <DirectionsRunIcon />;
         default:
-            return '';
+            return null;
     }
 }
 
 export default function SideDrawer() {
-    const [state, setState] = useState(false);
-    const { boards } = useContext(UserInfoContextStore)
+    const { toggleMenubar, isMenuOpen, boards } = useContext(UserInfoContextStore)
     const [url, setUrl] = useState(false);
     const [open, setOpen] = useState(false);
+
 
     const handleClose = () => {
         setOpen(false);
     };
 
-    const toggleDrawer = () => {
-        setState(!state);
+    const handleOpen = () => {
+        setOpen(true);
     };
 
     const OpenBoard = (key) => {
@@ -77,11 +77,11 @@ export default function SideDrawer() {
         <Box
             sx={{ width: 250 }}
             role="presentation"
-            onClick={toggleDrawer}
-        >
+            onClick={toggleMenubar}
+        >{ }
             <List>
                 {Object.keys(boards).map((key, index) => (
-                    <ListItem key={index} disablePadding>
+                    renderSwitch(key) && <ListItem key={index} disablePadding>
                         <ListItemButton onClick={() => OpenBoard(key)}>
                             <ListItemIcon>
                                 {renderSwitch(key)}
@@ -89,6 +89,7 @@ export default function SideDrawer() {
                             <ListItemText primary={key} />
                         </ListItemButton>
                     </ListItem>
+
                 ))}
             </List>
             <Divider />
@@ -97,19 +98,19 @@ export default function SideDrawer() {
 
     return (
         <div >
-            <IconButton
+            {/* <IconButton
                 className='side-drawer'
                 edge="start"
                 aria-label="menu"
                 sx={{ ml: 2 }}
-                onClick={toggleDrawer}
+                onClick={toggleMenubar}
             >
                 <MenuIcon fontSize="inherit" />
-            </IconButton>
+            </IconButton> */}
             <Drawer
                 style={customStyles.drawer}
-                open={state}
-                onClose={toggleDrawer}
+                open={isMenuOpen}
+                onClose={toggleMenubar}
             >
                 {list()}
             </Drawer>

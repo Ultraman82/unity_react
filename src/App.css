@@ -2,10 +2,13 @@
     position: relative;
 }
 
-
 .test-button {
     z-index: 0;
     position: absolute !important;
     top: 100px;
     left: 0px;
+}
+
+.MuiIcon-fontSizeLarge {
+    font-size: 3.25rem;
 }
