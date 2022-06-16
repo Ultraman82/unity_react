@@ -120,7 +120,7 @@ export default function ChatTest(props) {
                         <Box p={0} >
                             <Grid container spacing={1} alignItems="center">
                                 <Grid id="chat-window" xs={12} item>
-                                    <Typography style={{ paddingLeft: '1Rem', color: '#7CFC00', wordWrap: "break-word" }}>박형준 시장후보: {myMessage}</Typography>
+                                    <Typography style={{ paddingLeft: '1Rem', color: '#7CFC00', wordWrap: "break-word" }}>박형준 부산시장후보: {myMessage}</Typography>
 
                                     <List id="chat-window-messages">
                                         {listChatMessages}

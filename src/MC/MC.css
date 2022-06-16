@@ -17,5 +17,20 @@
     position: absolute !important;
     top: -55vh;
     left: -30vw;
-    color: aliceblue !important;
+    color: #f3fff0 !important;
+}
+
+.my-container {
+    justify-self: center;
+    align-self: center;
+    width: 30vw;
+    background: transparent !important;
+    background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.my-parent {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

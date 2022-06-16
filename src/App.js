@@ -15,6 +15,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import HelpBoard from './HelpBoard'
 import MC from "./MC/MC"
+import Mayor from "./MC/Mayor"
 const useStyles = makeStyles({
   imageIcon: {
     height: '100%',
@@ -32,9 +33,11 @@ const useStyles = makeStyles({
 
 const unityContext = new UnityContext({
   loaderUrl: "Build/public.loader.js",
-  dataUrl: "Build/public.data",
   frameworkUrl: "Build/public.framework.js",
-  codeUrl: "Build/public.wasm",
+  // dataUrl: "Build/public.data",
+  // codeUrl: "Build/public.wasm",
+  dataUrl: process.env.REACT_APP_UNIY_DATA,
+  codeUrl: process.env.REACT_APP_UNIY_WASM,
 })
 
 export default function App() {
@@ -121,9 +124,6 @@ export default function App() {
 
 
   return (
-    // 
-    // <Box sx={{ my: 4 }}>
-
     < Box className="main-container" >
       {links &&
         <>
@@ -131,20 +131,11 @@ export default function App() {
           {!unityLoaded && <p>Loading {progression}%</p>}
           <FullScreen handle={handle}>
             <HelpBoard></HelpBoard>
-            {/* <Mayor></Mayor> */}
+            <Mayor></Mayor>
             <MC></MC>
             {unityLoaded &&
               <div className="icon-container">
-                {/* <IconButton
-                  // edge="start"
-                  aria-label="menu"
-                  sx={{ ml: 3 }}
-                  size='large'
-                  className={{ root: classes.menuRoot }}
-                  onClick={toggleMenubar}
-                >
-                  <MenuIcon className={classes.imageIcon} />
-                </IconButton> */}
+
                 <IconButton aria-label="메뉴바" onClick={toggleMenubar}>
                   <Icon fontSize="large" className={{ root: classes.iconRoot }}>
                     <img className={classes.menuRoot} src="/icons/icon_menubar.svg" />
@@ -191,12 +182,3 @@ export default function App() {
 
   );
 }
-
-{/* <Button variant="outlined" onClick={eraseLocal}>
-        Reset localStorage
-      </Button> */}
-{/* <Button variant="outlined" startIcon={<SettingsOverscanIcon />} onClick={handle.enter}>
-      Full Screen
-    </Button> */}
-
-

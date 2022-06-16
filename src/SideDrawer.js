@@ -18,7 +18,9 @@ import PageviewIcon from '@mui/icons-material/Pageview';
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import AddReactionIcon from '@mui/icons-material/AddReaction';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
-
+import StreetviewIcon from '@mui/icons-material/Streetview';
+import SportsHandballIcon from '@mui/icons-material/SportsHandball';
+import SignLanguageIcon from '@mui/icons-material/SignLanguage';
 const customStyles = {
     iframe: {
         justifySelf: 'center',
@@ -45,6 +47,12 @@ function renderSwitch(param) {
             return <AddReactionIcon />;
         case '부산시장, 박형준':
             return <DirectionsRunIcon />;
+        case '박형준 응원하기':
+            return <SignLanguageIcon />;
+        case '정책 제안하기':
+            return <StreetviewIcon />;
+        case '박형준에게 바란다':
+            return <SportsHandballIcon />;
         default:
             return null;
     }
@@ -82,6 +90,7 @@ export default function SideDrawer() {
             <List>
                 {Object.keys(boards).map((key, index) => (
                     renderSwitch(key) && <ListItem key={index} disablePadding>
+                        {/* <ListItem key={index} disablePadding> */}
                         <ListItemButton onClick={() => OpenBoard(key)}>
                             <ListItemIcon>
                                 {renderSwitch(key)}
